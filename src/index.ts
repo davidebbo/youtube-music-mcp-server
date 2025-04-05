@@ -176,7 +176,10 @@ class YoutubeMusicServer {
                     exec(command, (error: ExecException | null, stdout: string, stderr: string) => {
                         if (error) {
                             this.log.push(`Error opening song in Chrome: ${error.message}`);
-                            console.error(`Error opening Chrome: ${error.message}`);
+                            throw new McpError(
+                                ErrorCode.InternalError, 
+                                `Error opening song in Chrome: ${error.message}`
+                            );
                         } else {
                             this.log.push(`Opened song in Chrome: ${youtubeMusicUrl}`);
                         }
