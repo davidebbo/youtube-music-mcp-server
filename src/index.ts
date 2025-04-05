@@ -9,8 +9,18 @@ import {
 } from '@modelcontextprotocol/sdk/types.js';
 import axios from 'axios';
 import { exec, ExecException } from 'child_process';
-import { z } from 'zod';
 import os from 'os';
+import path from 'path';
+import dotenv from 'dotenv';
+import { fileURLToPath } from 'url';
+
+// Calculate the directory path
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const parentDir = path.resolve(__dirname, '..');
+
+// Load environment variables from .env file in parent directory
+dotenv.config({ path: path.join(parentDir, '.env') });
 
 const API_KEY = process.env.YOUTUBE_API_KEY;
 if (!API_KEY) {
